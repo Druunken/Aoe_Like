@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://uyhctr5yuvi1"]
+
+[ext_resource type="Texture2D" uid="uid://b83v8bvk1ek3j" path="res://rts_assets/PNG/Default size/Unit/medievalUnit_24.png" id="1_cs0p8"]
+[ext_resource type="Script" path="res://scenes/farmer.gd" id="1_pfmfn"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2kn4p"]
+radius = 9.0
+height = 28.0
+
+[node name="Farmer" type="Area2D"]
+script = ExtResource("1_pfmfn")
+movementSpeed = null
+
+[node name="img" type="Sprite2D" parent="."]
+texture = ExtResource("1_cs0p8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_2kn4p")

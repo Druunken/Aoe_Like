@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://uyhctr5yuvi1"]
+
+[ext_resource type="Script" path="res://scenes/farmer.gd" id="1_pfmfn"]
+[ext_resource type="Texture2D" uid="uid://cgl284tt86pki" path="res://rts_assets/PNG/Default size/Tile/medievalTile_02.png" id="2_7u330"]
+[ext_resource type="Texture2D" uid="uid://blhsu77674kcp" path="res://rts_assets/PNG/Default size/Unit/medievalUnit_23.png" id="3_6qha1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2kn4p"]
+radius = 9.0
+height = 28.0
+
+[sub_resource type="Curve" id="Curve_80ptu"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.126582, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_jegbk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_aqfxh"]
+_data = [Vector2(0, 0.769231), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_cd62q"]
+curve_x = SubResource("Curve_80ptu")
+curve_y = SubResource("Curve_jegbk")
+curve_z = SubResource("Curve_aqfxh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_06dsr"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(0, 0, 0)
+gravity = Vector3(0, 50, 5)
+scale_max = 5.0
+scale_curve = SubResource("CurveXYZTexture_cd62q")
+
+[node name="Farmer" type="Area2D"]
+script = ExtResource("1_pfmfn")
+
+[node name="highlight" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0.90967, 0.908345, 1, 1)
+position = Vector2(4.76837e-07, 8)
+scale = Vector2(0.375, 0.25)
+texture = ExtResource("2_7u330")
+
+[node name="img" type="Sprite2D" parent="."]
+texture = ExtResource("3_6qha1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_2kn4p")
+
+[node name="selectedParticle" type="GPUParticles2D" parent="."]
+visible = false
+modulate = Color(0.663595, 0.937641, 0.533453, 1)
+light_mask = 0
+position = Vector2(0, -64)
+scale = Vector2(0.5, 0.5)
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_06dsr")
+lifetime = 1.2
+speed_scale = 0.5
+fract_delta = false
+trail_enabled = true
+trail_lifetime = 5.0
+trail_sections = 2
+trail_section_subdivisions = 2
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
