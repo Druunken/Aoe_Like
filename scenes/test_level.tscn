@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://hnncfcpp0b15"]
+
+[ext_resource type="Script" path="res://scenes/test_level.gd" id="1_ci50k"]
+[ext_resource type="PackedScene" uid="uid://uyhctr5yuvi1" path="res://scenes/farmer.tscn" id="1_vnnsy"]
+
+[node name="testLevel" type="Node2D"]
+script = ExtResource("1_ci50k")
+
+[node name="Farmer" parent="." instance=ExtResource("1_vnnsy")]
+position = Vector2(88, 40)
+
+[node name="Farmer2" parent="." instance=ExtResource("1_vnnsy")]
+position = Vector2(123, 118)
+
+[node name="Farmer3" parent="." instance=ExtResource("1_vnnsy")]
+position = Vector2(188, 54)
+
+[connection signal="input_event" from="Farmer3" to="." method="_on_farmer_3_input_event"]

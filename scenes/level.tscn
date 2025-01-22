@@ -1457,18 +1457,20 @@ metadata/_edit_lock_ = true
 
 [node name="cam" type="Camera2D" parent="."]
 anchor_mode = 0
+zoom = Vector2(2, 2)
 script = ExtResource("6_6r85o")
 
 [node name="UI_INFO" parent="cam" instance=ExtResource("6_eayje")]
 
 [node name="FarmersContainer" type="Node2D" parent="."]
 
-[node name="Farmer" parent="FarmersContainer" instance=ExtResource("8_d6ggr")]
-position = Vector2(232, 185)
-
-[node name="Farmer2" parent="FarmersContainer" instance=ExtResource("8_d6ggr")]
+[node name="farmer" parent="FarmersContainer" instance=ExtResource("8_d6ggr")]
 position = Vector2(421, 187)
 
-[connection signal="selectUnit" from="." to="FarmersContainer/Farmer" method="_on_level_select_unit"]
-[connection signal="input_event" from="FarmersContainer/Farmer" to="." method="_on_farmer_input_event"]
-[connection signal="input_event" from="FarmersContainer/Farmer2" to="." method="_on_farmer_input_event"]
+[node name="farmer2" parent="FarmersContainer" instance=ExtResource("8_d6ggr")]
+position = Vector2(249, 200)
+
+[connection signal="selectUnit" from="." to="FarmersContainer/farmer" method="_on_level_select_unit"]
+[connection signal="selectUnit" from="." to="FarmersContainer/farmer2" method="_on_level_select_unit"]
+[connection signal="input_event" from="FarmersContainer/farmer" to="." method="_on_farmer_input_event"]
+[connection signal="input_event" from="FarmersContainer/farmer2" to="." method="_on_farmer_input_event"]

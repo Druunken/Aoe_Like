@@ -24,4 +24,5 @@ func _process(delta: float) -> void:
 
 func _on_level_select_unit(action) -> void:
 	$highlight.visible = action
+	print("hitting here")
 	pass # Replace with function body.

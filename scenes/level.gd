@@ -9,7 +9,6 @@ var edgeTolerance := 50
 signal selectUnit(action)
 
 func _ready() -> void:
-	#$cam.position.x = 1000
 	dimensions = get_viewport().get_visible_rect()
 	xView = dimensions.size.x
 	yView = dimensions.size.y
@@ -30,13 +29,16 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	#if(event is InputEventMouseButton)
 	if(event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
-		print("not hit farmer")
-		selectUnit.emit(false)
+		#print("not hit farmer")
+		#selectUnit.emit(false)
+		pass
 	pass
 
 
 func _on_farmer_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	if(event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
-		print("hit farmer")
+	#if(event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT):
+		#print("hit farmer")
+		#selectUnit.emit(true)
+	if(event.is_action_pressed("leftClick")):
 		selectUnit.emit(true)
 	pass # Replace with function body.

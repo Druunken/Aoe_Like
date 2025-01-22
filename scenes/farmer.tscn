@@ -64,5 +64,3 @@ trail_enabled = true
 trail_lifetime = 5.0
 trail_sections = 2
 trail_section_subdivisions = 2
-
-[connection signal="input_event" from="." to="." method="_on_input_event"]
